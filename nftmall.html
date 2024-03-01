@@ -1,0 +1,626 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="./bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Mainly scripts -->
+    <script src="./Scripts/jquery-1.10.2.min.js"></script>
+    <script src="./bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <script src="./Scripts/layer.js"></script>
+    <script type="text/javascript" src="./web3js_1_80/web3.min.js"></script>  
+    <script type="text/javascript" src="./js/nftmall.js"></script> 
+    <style type="text/css">
+        .later {
+            padding-right: 20px;
+            color: red;
+        }
+        .plr {
+            margin-right: 20px;
+        } 
+    </style>
+</head>
+<body style="background-color:white;">
+    <style>
+    </style>
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#tab1" data-toggle="tab">
+                NFT交易 管理
+            </a>
+        </li>
+    </ul>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+                    <div class="form-group">
+                        <label class="control-label">连接账户:</label>
+                        <label class="control-label later" id="spanAddress"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+                    <div class="form-group">
+                        <label class="control-label">NFT交易 合约地址:</label>
+                        <label class="control-label">0x87B6EFCA225bf90dcFD4D074139e01b309feAff9</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">行星卡累计上架数量:</label>
+                        <label class="control-label later" id="sellCountNFT1"></label>
+
+                        <label class="control-label">恒星卡累积上架数量:</label>
+                        <label class="control-label later" id="sellCountNFT2"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">上架卡牌:</label>
+                 
+                        <select id="slSellType" class="form-control">
+                            <option value="1">行星卡</option>
+                            <option value="2">恒星卡</option>
+                        </select>
+                        <input class="form-control" type="text" name="txtSellCount" id="txtSellCount" placeholder="请输入数量" />
+                        <input class="form-control" type="text" name="txtSellPrice" id="txtSellPrice" placeholder="请输入USDT价格" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnAddSell">
+                        上架
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">卖出卡牌列表总数:</label>
+                        <label class="control-label later" id="NFTSellInfoList">*</label>
+
+                        <input class="form-control" type="text" id="txtNFTSellInfoList" placeholder="输入数组下标序号(从0开始)" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnSelectSellList">
+                        查询卡片详细信息
+                    </button><br />
+                   
+                        <label class="control-label">卡片种类:</label>
+                        <label class="control-label later" id="NFTSellInfot">*</label>
+                        <label class="control-label">增值次数:</label>
+                        <label class="control-label later" id="NFTSellInfoaddedcount">*</label>
+                  
+                        <label class="control-label">卡片出售价格:</label>
+                        <label class="control-label later" id="NFTSellInfoprice">*</label>
+   
+                        <br />
+                        <label class="control-label">奖励值:</label>
+                        <label class="control-label later" id="NFTSellInfoaward">*</label>
+              
+       
+                        <label class="control-label">出售时间:</label>
+                        <label class="control-label later" id="NFTSellInfoselltime">*</label>
+             
+           
+                        <label class="control-label">操作地址:</label>
+                        <label class="control-label later" id="NFTSellInfoaccount">*</label>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">个人卡片持有总数:</label>
+                        <label class="control-label later" id="NFTAccountInfoCount">*</label>
+                        <input class="form-control" type="text" id="txtNFTAccountAddres" placeholder="输入查询地址" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnNFTAccountInfo">
+                        查询个人卡片详细信息
+                    </button><br />
+                    <div id="NFTAccountInfoList">
+                        <!--<div>
+                            <label class="control-label">卡片种类:</label>
+                            <label class="control-label later" id="NFTAccountInfot">*</label>
+                            <label class="control-label">增值次数:</label>
+                            <label class="control-label later" id="NFTAccountInfoedcount">*</label>
+
+                            <label class="control-label">卡片状态:</label>
+                            <label class="control-label later" id="NFTAccountInfostate">*</label>
+
+                            <br />
+                            <label class="control-label">卡片买入价格:</label>
+                            <label class="control-label later" id="NFTAccountInfobuyPrice">*</label>
+
+
+                            <label class="control-label">卡片价值:</label>
+                            <label class="control-label later" id="NFTSellInfoprice">*</label>
+
+
+                            <label class="control-label">卡片奖值:</label>
+                            <label class="control-label later" id="NFTSellInfoaward">*</label>
+
+                            <br />
+                            <label class="control-label">卡片出售价格:</label>
+                            <label class="control-label later" id="NFTAccountInfoselltime">*</label>
+
+                            <label class="control-label">是否领取补偿奖励:</label>
+                            <label class="control-label later" id="NFTSellInfoisComrewards">*</label>
+
+                            <label class="control-label">卡片增值信息:</label>
+                            周期<label class="control-label later" id="NFTSellInfocomcycle">*</label>
+                            增长率<label class="control-label later" id="NFTSellInfocomgrowth">*</label>
+                            奖励率<label class="control-label later" id="NFTSellInfocomreward">*</label>
+                            开始<label class="control-label later" id="NFTSellInfocomstart">*</label>
+                            结束<label class="control-label later" id="NFTSellInfocomendstart">*</label>
+                        </div>
+                        <div style="height:1px; background-color:#e5e5e5"></div>
+                        <div>
+                            <label class="control-label">卡片种类:</label>
+                            <label class="control-label later" id="NFTAccountInfot">*</label>
+                            <label class="control-label">增值次数:</label>
+                            <label class="control-label later" id="NFTAccountInfoedcount">*</label>
+
+                            <label class="control-label">卡片状态:</label>
+                            <label class="control-label later" id="NFTAccountInfostate">*</label>
+
+                            <br />
+                            <label class="control-label">卡片买入价格:</label>
+                            <label class="control-label later" id="NFTAccountInfobuyPrice">*</label>
+
+
+                            <label class="control-label">卡片价值:</label>
+                            <label class="control-label later" id="NFTSellInfoprice">*</label>
+
+
+                            <label class="control-label">卡片奖值:</label>
+                            <label class="control-label later" id="NFTSellInfoaward">*</label>
+
+                            <br />
+                            <label class="control-label">卡片出售价格:</label>
+                            <label class="control-label later" id="NFTAccountInfoselltime">*</label>
+
+                            <label class="control-label">是否领取补偿奖励:</label>
+                            <label class="control-label later" id="NFTSellInfoisComrewards">*</label>
+
+                            <label class="control-label">卡片增值信息:</label>
+                            周期<label class="control-label later" id="NFTSellInfocomcycle">*</label>
+                            增长率<label class="control-label later" id="NFTSellInfocomgrowth">*</label>
+                            奖励率<label class="control-label later" id="NFTSellInfocomreward">*</label>
+                            开始<label class="control-label later" id="NFTSellInfocomstart">*</label>
+                            结束<label class="control-label later" id="NFTSellInfocomendstart">*</label>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">个人VIP级别:</label>
+                        <label class="control-label later" id="UserVIP">*</label>
+                        <input class="form-control" type="text" id="txtSelectUserVIPAddres" placeholder="输入查询地址" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnSelectUserVIP">
+                        查询个人VIP级别
+                    </button>
+                    <input class="form-control" type="text" id="txtUserVIPAddres" placeholder="输入设置VIP地址" />
+                    <input class="form-control" type="text" id="txtUserVIP" placeholder="输入设置VIP级别" />
+                    <button type="button" class="btn btn-primary plr" id="btnSetUserVIP">
+                        设置VIP级别
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div id="CycleParametersList">
+                    <!--<div class="gridSearch form-inline" style="line-height:60px;">
+                        <div class="form-group">
+                            <label class="control-label">周期:</label>
+                            <label class="control-label later">1</label>
+                            <label class="control-label">增长值:</label>
+                            <label class="control-label later">1</label>
+                            <label class="control-label">奖励值:</label>
+                            <label class="control-label later">1</label>
+                            <button type="button" class="btn btn-primary plr" id="btnDelCycleParameters">
+                                删除
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="gridSearch form-inline" style="line-height:60px;">
+                        <div class="form-group">
+                            <label class="control-label">周期:</label>
+                            <label class="control-label later">1</label>
+                            <label class="control-label">增长值:</label>
+                            <label class="control-label later">1</label>
+                            <label class="control-label">奖励值:</label>
+                            <label class="control-label later">1</label>
+                            <button type="button" class="btn btn-primary plr" id="btnDelCycleParameters">
+                                删除
+                            </button>
+                        </div>
+                    </div>-->
+                </div>
+
+                <div class="gridSearch form-inline" style="line-height:60px;">
+                    <div class="form-group">
+                        <label class="control-label">设置质押收益:</label>
+                        <input class="form-control" type="text" id="txtCycle" placeholder="设置周期天数" />
+                        <input class="form-control" type="text" id="txtGrowth" placeholder="请输入收益率" />
+                        <input class="form-control" type="text" id="txtReward" placeholder="请输入奖励值收益率" />
+                        <span style="color:red">百分比数据*100 , 0.55%设置为：55</span>
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnCycleParameters">
+                        提交
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">单日卡牌交易上限:</label>
+                        <label class="control-label later" id="DayTradeNftTotal"></label>
+                        <input class="form-control" type="text" name="txtDayTradeNftTotal" id="txtDayTradeNftTotal" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnDayTradeNftTotal">
+                        设置
+                    </button>
+
+                    <div class="form-group">
+                        <label class="control-label">单个账户单日购买卡牌上限:</label>
+                        <label class="control-label later" id="EveryDayAddrTradeNft"></label>
+                        <input class="form-control" type="text" name="txtEveryDayAddrTradeNft" id="txtEveryDayAddrTradeNft" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnEveryDayAddrTradeNft">
+                        设置
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">账户持卡数量上限:</label>
+                        <label class="control-label later" id="EveryAddrNftTotal"></label>
+                        <input class="form-control" type="text" name="txtEveryAddrNftTotal" id="txtEveryAddrNftTotal" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnEveryAddrNftTotal">
+                        设置
+                    </button>
+
+                    <div class="form-group">
+                        <label class="control-label">个人持有多少卡片有市场收益:</label>
+                        <label class="control-label later" id="NFTMarketRewardCount"></label>
+                        <input class="form-control" type="text" id="txtNFTMarketRewardCount" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnNFTMarketRewardCount">
+                        设置
+                    </button>
+
+                    <div class="form-group">
+                        <label class="control-label">卡片增值次数上限:</label>
+                        <label class="control-label later" id="NFTComRewardCount"></label>
+                        <input class="form-control" type="text" id="txtNFTComRewardCount" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnNFTComRewardCount">
+                        设置
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">补偿收益最少提现（单位：U）:</label>
+                        <label class="control-label later" id="minComAmountAll"></label>
+                        <input class="form-control" type="text" name="txtminComAmountAll" id="txtminComAmountAll" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnminComAmountAll">
+                        设置
+                    </button>
+
+                    <div class="form-group">
+                        <label class="control-label">补偿收益倍率:</label>
+                        <label class="control-label later" id="comRewardBFB"></label>
+                        <input class="form-control" type="text" id="txtcomRewardBFB" placeholder="请输入设置数量" /><span style="color:red">补偿收益 倍率  1.5%  设为15</span>
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btncomRewardBFB">
+                        设置
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">升级团队买入数量:</label>
+                        <label class="control-label">V1:</label>
+                        <label class="control-label later" id="v1TeambuyAmount"></label>
+                        <input class="form-control" type="text" id="txtv1TeambuyAmount" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnv1TeambuyAmount">
+                        设置
+                    </button>
+
+                    <div class="form-group">
+                        <label class="control-label">V2:</label>
+                        <label class="control-label later" id="v2TeambuyAmount"></label>
+                        <input class="form-control" type="text" id="txtv2TeambuyAmount" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnv2TeambuyAmount">
+                        设置
+                    </button>
+                    <div class="form-group">
+                        <label class="control-label">V3:</label>
+                        <label class="control-label later" id="v3TeambuyAmount"></label>
+                        <input class="form-control" type="text" id="txtv3TeambuyAmount" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnv3TeambuyAmount">
+                        设置
+                    </button>
+
+                    <div class="form-group">
+                        <label class="control-label">V4:</label>
+                        <label class="control-label later" id="v4TeambuyAmount"></label>
+                        <input class="form-control" type="text" id="txtv4TeambuyAmount" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnv4TeambuyAmount">
+                        设置
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="height:1px; background-color:#e5e5e5"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">奖励值总分配<span style="color:red">60%设置为60</span>:</label>
+                        <label class="control-label">市场奖励:</label>
+                        <label class="control-label later" id="arr0RewardMDF">*</label>
+                        <input class="form-control" type="text" id="txtarr0RewardMDF" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btntarr0RewardMDF">
+                        设置
+                    </button>
+                     
+                    <div class="form-group">
+                        <label class="control-label">销毁:</label>
+                        <label class="control-label later" id="arr1RewardMDF">*</label>
+                        <input class="form-control" type="text" id="txtarr1RewardMDF" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btntarr1RewardMDF">
+                        设置
+                    </button>
+
+                    <div class="form-group">
+                        <label class="control-label">平台手续费:</label>
+                        <label class="control-label later" id="arr2RewardMDF">*</label>
+                        <input class="form-control" type="text" id="txtarr2RewardMDF" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btntarr2RewardMDF">
+                        设置
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">市场奖励分配<span style="color:red">12.5%设置为125</span>:</label>
+                        <label class="control-label">直接推荐:</label>
+                        <label class="control-label later" id="arr0vfee1_5L2">*</label>
+                        <input class="form-control" type="text" id="txtarr0vfee1_5L2" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btntarr0vfee1_5L2">
+                        设置
+                    </button>
+
+                    <div class="form-group">
+                        <label class="control-label">V1分享奖励:</label>
+                        <label class="control-label later" id="arr1vfee1_5L2">*</label>
+                        <input class="form-control" type="text" id="txtarr1vfee1_5L2" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btntarr1vfee1_5L2">
+                        设置
+                    </button>
+                    <br />
+                    <div class="form-group">
+                        <label class="control-label">V2分享奖励:</label>
+                        <label class="control-label later" id="arr2vfee1_5L2">*</label>
+                        <input class="form-control" type="text" id="txtarr2vfee1_5L2" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btntarr2vfee1_5L2">
+                        设置
+                    </button>
+
+                    <div class="form-group">
+                        <label class="control-label">V3分享奖励:</label>
+                        <label class="control-label later" id="arr3vfee1_5L2">*</label>
+                        <input class="form-control" type="text" id="txtarr3vfee1_5L2" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btntarr3vfee1_5L2">
+                        设置
+                    </button>
+                    <br />
+                    <div class="form-group">
+                        <label class="control-label">V4分享奖励:</label>
+                        <label class="control-label later" id="arr4vfee1_5L2">*</label>
+                        <input class="form-control" type="text" id="txtarr4vfee1_5L2" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btntarr4vfee1_5L2">
+                        设置
+                    </button>
+
+                    <div class="form-group">
+                        <label class="control-label">V5分享奖励:</label>
+                        <label class="control-label later" id="arr5vfee1_5L2">*</label>
+                        <input class="form-control" type="text" id="txtarr5vfee1_5L2" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btntarr5vfee1_5L2">
+                        设置
+                    </button>
+                    <br />
+                    <div class="form-group">
+                        <label class="control-label">V5 L2分享奖励:</label>
+                        <label class="control-label later" id="arr6vfee1_5L2">*</label>
+                        <input class="form-control" type="text" id="txtarr6vfee1_5L2" placeholder="请输入设置数量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btntarr6vfee1_5L2">
+                        设置
+                    </button>
+                    <span style="color:red">
+                        V1-V5奖励为极差奖励设置要求 V5+V5L2+直接推荐=1000
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">合约USDT余额:</label>
+                        <label class="control-label later" id="usdtBalance">*</label>
+                        <input class="form-control" type="text"  id="txtUsdtAmount" placeholder="请输入提现数量" />
+                        <input class="form-control" type="text"  id="txtUsdtAddress" placeholder="请输入提现地址" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnWDUsdt">
+                        提现
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">合约KPL余额:</label>
+                        <label class="control-label later" id="KPLBalance">*</label>
+                        <input class="form-control" type="text" id="txtKPLAmount" placeholder="请输入提现数量" />
+                        <input class="form-control" type="text" id="txtKPLAddress" placeholder="请输入提现地址" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnWDKPL">
+                        提现
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">合约BNB余额:</label>
+                        <label class="control-label later" id="BNBBalance">*</label>
+                        <input class="form-control" type="text" id="txtBNBAmount" placeholder="请输入提现数量" />
+                        <input class="form-control" type="text" id="txtBNBAddress" placeholder="请输入提现地址" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnWDBNB">
+                        提现
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+
+</body>
+</html>

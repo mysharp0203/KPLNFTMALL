@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>登陆</title>
+    <link href="./bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./Css/style.css" rel="stylesheet" />
+    <script src="./Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+
+        // 如果页面被嵌入到iframe中，则以下条件必定不相等
+        if (window.top !== window.self) {
+            top.location.href = self.location.href;
+        }
+    </script>
+</head>
+<body class="gray-bg">
+        <div class="middle-box text-center loginscreen  animated fadeInDown">
+            <div>
+                <div>
+                    <h1 class="logo-name"><!--<img src="/Images/logo.png" style="width:200px;" />--></h1>
+                </div>
+                <h3 class="ibox">欢迎使用后台管理系统</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="用户名" required="" id="txtName" style="height:40px;"  />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="密码" required="" id="txtPwd" style="height:40px;" autocomplete="off"  />
+                </div>
+                <input type="button" value="登 录" class="btn btn-primary block full-width m-b" id="btnLogin" />
+                <p class="text-muted text-center">
+                </p>
+            </div>
+        </div>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnLogin").click(function () {
+                var name = $("#txtName").val();
+                var pwd = $("#txtPwd").val();
+                if (name == "admin" && pwd == "136868") {
+                    window.location.href = 'nftindex.html';
+                }
+            })
+        })
+    </script>
+</body>
+</html>

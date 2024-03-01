@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="./bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Mainly scripts -->
+    <script src="./Scripts/jquery-1.10.2.min.js"></script>
+    <script src="./bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <script src="./Scripts/layer.js"></script>
+    <script type="text/javascript" src="./web3js_1_80/web3.min.js"></script>  
+    <style type="text/css">
+        .later {
+            padding-right:20px; 
+            color:red;
+        }
+    </style>
+</head>
+<body style="background-color:white;">
+        <style>
+
+        </style>
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active">
+                <a href="#tab1" data-toggle="tab">
+                    IDO 管理
+                </a>
+            </li>
+        </ul>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+                    <div class="form-group">
+                        <label class="control-label">连接账户:</label>
+                        <label class="control-label later" id="spanAddress"></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+                    <div class="form-group">
+                        <label class="control-label">IDO 合约地址:</label>
+                        <label class="control-label">0x30A9bc78d865c6E6FB4C18610Fd1a49ED8A1D1cc</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">IDO 参与人数:</label>
+                        <label class="control-label later" id="idocount">*</label>
+
+                        <label class="control-label">IDO 总量:</label>
+                        <label class="control-label later" id="txtIdoTotalAmount">*</label>
+                        <input class="form-control" type="text" name="txtIdoTotalAmount" id="txtIdoTotalAmount" placeholder="请设置IDO总量" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnSetIDOTotalAmount">
+                        设置
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">IDO 参与金额:</label>
+                        <label class="control-label later" id="idoamount">*</label>
+
+                        <label class="control-label">设置参与金额:</label>
+                        <input class="form-control" type="text" name="txtAmount" id="txtAmount" placeholder="请输入金额" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnSetIDOAmount">
+                        设置
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">IDO 状态:</label>
+                        <label class="control-label later" id="idoState">*</label>
+
+                        <label class="control-label">设置:</label>
+                        <select id="slState" class="form-control">
+                            <option value="0">关闭</option>
+                            <option value="1">开始</option>
+                            <option value="2">结束-会员可以提现</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnSetIDOState">
+                        设置
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">IDO合约USDT余额:</label>
+                        <label class="control-label later" id="uamount">*</label>
+
+                        <label class="control-label">提现USDT:</label>
+                        <input class="form-control" type="text" name="txtUAmount" id="txtUAmount" placeholder="请输入金额" />
+                        <input class="form-control" type="text" name="txtUAddress" id="txtUAddress" placeholder="请输入地址" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnWDUSDT">
+                        提现
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">IDO合约KPL余额:</label>
+                        <label class="control-label later" id="kplamount">*</label>
+
+                        <label class="control-label">提现KPL:</label>
+                        <input class="form-control" type="text" name="txtKPLAmount" id="txtKPLAmount" placeholder="请输入金额" />
+                        <input class="form-control" type="text" name="txtKPLAddress" id="txtKPLAddress" placeholder="请输入地址" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnWDKPL">
+                        提现
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox-content">
+                <div class="gridSearch form-inline" style="line-height:60px;">
+
+                    <div class="form-group">
+                        <label class="control-label">IDO合约BNB余额:</label>
+                        <label class="control-label later" id="bnbamount">*</label>
+
+                        <label class="control-label">提现BNB:</label>
+                        <input class="form-control" type="text" name="txtbnbAmount" id="txtbnbAmount" placeholder="请输入金额" />
+                        <input class="form-control" type="text" name="txtbnbAddress" id="txtbnbAddress" placeholder="请输入地址" />
+                    </div>
+                    <button type="button" class="btn btn-primary plr" id="btnWDbnb">
+                        提现
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:1px; background-color:#e5e5e5"></div>
+    <script src="./js/ido.js"></script>
+</body>
+</html>
