@@ -1,18 +1,18 @@
 ﻿let bindusercontractABI=[
 	{
-	    "inputs": [],
-	    "stateMutability": "nonpayable",
-	    "type": "constructor"
-	},
-	{
 	    "inputs": [
 			{
-			    "internalType": "uint256",
-			    "name": "_amount",
-			    "type": "uint256"
+			    "internalType": "address",
+			    "name": "_addr",
+			    "type": "address"
+			},
+			{
+			    "internalType": "address",
+			    "name": "_leader",
+			    "type": "address"
 			}
 	    ],
-	    "name": "SetBnb",
+	    "name": "setRecommend",
 	    "outputs": [],
 	    "stateMutability": "nonpayable",
 	    "type": "function"
@@ -21,20 +21,32 @@
 	    "inputs": [
 			{
 			    "internalType": "address",
-			    "name": "",
+			    "name": "_addr",
 			    "type": "address"
 			}
 	    ],
-	    "name": "UserTeamTotalPeoPle",
-	    "outputs": [
+	    "name": "setRecommender",
+	    "outputs": [],
+	    "stateMutability": "payable",
+	    "type": "function"
+	},
+	{
+	    "inputs": [
 			{
-			    "internalType": "uint256",
-			    "name": "",
-			    "type": "uint256"
+			    "internalType": "address",
+			    "name": "_addr",
+			    "type": "address"
 			}
 	    ],
-	    "stateMutability": "view",
+	    "name": "SettopAddress",
+	    "outputs": [],
+	    "stateMutability": "nonpayable",
 	    "type": "function"
+	},
+	{
+	    "inputs": [],
+	    "stateMutability": "nonpayable",
+	    "type": "constructor"
 	},
 	{
 	    "inputs": [
@@ -85,25 +97,6 @@
 			    "type": "address"
 			}
 	    ],
-	    "name": "getUserTeamTotalPeoPle",
-	    "outputs": [
-			{
-			    "internalType": "uint256",
-			    "name": "",
-			    "type": "uint256"
-			}
-	    ],
-	    "stateMutability": "view",
-	    "type": "function"
-	},
-	{
-	    "inputs": [
-			{
-			    "internalType": "address",
-			    "name": "_addr",
-			    "type": "address"
-			}
-	    ],
 	    "name": "getrecommend",
 	    "outputs": [
 			{
@@ -129,6 +122,25 @@
 			    "internalType": "address[]",
 			    "name": "",
 			    "type": "address[]"
+			}
+	    ],
+	    "stateMutability": "view",
+	    "type": "function"
+	},
+	{
+	    "inputs": [
+			{
+			    "internalType": "address",
+			    "name": "_addr",
+			    "type": "address"
+			}
+	    ],
+	    "name": "getUserTeamTotalPeoPle",
+	    "outputs": [
+			{
+			    "internalType": "uint256",
+			    "name": "",
+			    "type": "uint256"
 			}
 	    ],
 	    "stateMutability": "view",
@@ -191,8 +203,14 @@
 	    "type": "function"
 	},
 	{
-	    "inputs": [],
-	    "name": "sendbnb",
+	    "inputs": [
+			{
+			    "internalType": "address",
+			    "name": "",
+			    "type": "address"
+			}
+	    ],
+	    "name": "UserTeamTotalPeoPle",
 	    "outputs": [
 			{
 			    "internalType": "uint256",
@@ -201,37 +219,6 @@
 			}
 	    ],
 	    "stateMutability": "view",
-	    "type": "function"
-	},
-	{
-	    "inputs": [
-			{
-			    "internalType": "address",
-			    "name": "_addr",
-			    "type": "address"
-			},
-			{
-			    "internalType": "address",
-			    "name": "_leader",
-			    "type": "address"
-			}
-	    ],
-	    "name": "setRecommend",
-	    "outputs": [],
-	    "stateMutability": "nonpayable",
-	    "type": "function"
-	},
-	{
-	    "inputs": [
-			{
-			    "internalType": "address",
-			    "name": "_addr",
-			    "type": "address"
-			}
-	    ],
-	    "name": "setRecommender",
-	    "outputs": [],
-	    "stateMutability": "payable",
 	    "type": "function"
 	}
 ];
@@ -468,9 +455,9 @@ let web3;
 web3 = new Web3();
 web3 = new Web3(window.ethereum);
 // bindUser 合约
-let bindusertokenAddress = '0x24EdcE09316799711a1D3C2D6A9728d3A9820c02';   
+let bindusertokenAddress = '0x4740BbAA609fAA5BcdD7f2c1Bf69e614277EC77c';   
 // KPL 合约
-let kpltokenAddress = '0xCB129b27b45bEC2B3c38411A7d12a3a534A11Aaf'; 
+let kpltokenAddress = '0x5cf699BEc01CC14d0d3f274b273eD2c87aDD349D'; 
 // USDT 合约
 let usdttokenAddress = '0x55d398326f99059fF775485246999027B3197955'; 
 

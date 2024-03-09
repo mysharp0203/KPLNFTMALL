@@ -24,90 +24,15 @@
 			    "internalType": "uint256",
 			    "name": "price",
 			    "type": "uint256"
+			},
+			{
+			    "indexed": false,
+			    "internalType": "uint256",
+			    "name": "t",
+			    "type": "uint256"
 			}
 	    ],
 	    "name": "DoBuy",
-	    "type": "event"
-	},
-	{
-	    "anonymous": false,
-	    "inputs": [
-			{
-			    "indexed": true,
-			    "internalType": "address",
-			    "name": "user",
-			    "type": "address"
-			},
-			{
-			    "indexed": true,
-			    "internalType": "address",
-			    "name": "from",
-			    "type": "address"
-			},
-			{
-			    "indexed": false,
-			    "internalType": "uint256",
-			    "name": "price",
-			    "type": "uint256"
-			}
-	    ],
-	    "name": "DoSell",
-	    "type": "event"
-	},
-	{
-	    "anonymous": false,
-	    "inputs": [
-			{
-			    "indexed": true,
-			    "internalType": "address",
-			    "name": "user",
-			    "type": "address"
-			},
-			{
-			    "indexed": false,
-			    "internalType": "uint256",
-			    "name": "amount",
-			    "type": "uint256"
-			},
-			{
-			    "indexed": true,
-			    "internalType": "address",
-			    "name": "token",
-			    "type": "address"
-			}
-	    ],
-	    "name": "DoWithdraw",
-	    "type": "event"
-	},
-	{
-	    "anonymous": false,
-	    "inputs": [
-			{
-			    "indexed": false,
-			    "internalType": "uint256",
-			    "name": "id",
-			    "type": "uint256"
-			},
-			{
-			    "indexed": false,
-			    "internalType": "uint256",
-			    "name": "endtimes",
-			    "type": "uint256"
-			},
-			{
-			    "indexed": true,
-			    "internalType": "address",
-			    "name": "account",
-			    "type": "address"
-			},
-			{
-			    "indexed": false,
-			    "internalType": "uint256",
-			    "name": "cycle",
-			    "type": "uint256"
-			}
-	    ],
-	    "name": "doComReward",
 	    "type": "event"
 	},
 	{
@@ -117,9 +42,9 @@
 	{
 	    "inputs": [
 			{
-			    "internalType": "uint8",
+			    "internalType": "uint256",
 			    "name": "_t",
-			    "type": "uint8"
+			    "type": "uint256"
 			},
 			{
 			    "internalType": "uint256",
@@ -170,7 +95,7 @@
 	    ],
 	    "name": "ComReward",
 	    "outputs": [],
-	    "stateMutability": "payable",
+	    "stateMutability": "nonpayable",
 	    "type": "function"
 	},
 	{
@@ -249,19 +174,6 @@
 			    "internalType": "address",
 			    "name": "",
 			    "type": "address"
-			}
-	    ],
-	    "stateMutability": "view",
-	    "type": "function"
-	},
-	{
-	    "inputs": [],
-	    "name": "MallNftTotal",
-	    "outputs": [
-			{
-			    "internalType": "uint256",
-			    "name": "",
-			    "type": "uint256"
 			}
 	    ],
 	    "stateMutability": "view",
@@ -392,7 +304,7 @@
 	    ],
 	    "name": "SettlementIncome",
 	    "outputs": [],
-	    "stateMutability": "payable",
+	    "stateMutability": "nonpayable",
 	    "type": "function"
 	},
 	{
@@ -562,21 +474,10 @@
 	    "type": "function"
 	},
 	{
-	    "inputs": [
-			{
-			    "internalType": "uint256",
-			    "name": "_index",
-			    "type": "uint256"
-			},
-			{
-			    "internalType": "uint256",
-			    "name": "_id",
-			    "type": "uint256"
-			}
-	    ],
+	    "inputs": [],
 	    "name": "buyNFT",
 	    "outputs": [],
-	    "stateMutability": "payable",
+	    "stateMutability": "nonpayable",
 	    "type": "function"
 	},
 	{
@@ -612,7 +513,7 @@
 	    ],
 	    "name": "copyComReward",
 	    "outputs": [],
-	    "stateMutability": "payable",
+	    "stateMutability": "nonpayable",
 	    "type": "function"
 	},
 	{
@@ -774,6 +675,25 @@
 			{
 			    "internalType": "uint256",
 			    "name": "todayAmount",
+			    "type": "uint256"
+			}
+	    ],
+	    "stateMutability": "view",
+	    "type": "function"
+	},
+	{
+	    "inputs": [
+			{
+			    "internalType": "uint256",
+			    "name": "_USDTAmount",
+			    "type": "uint256"
+			}
+	    ],
+	    "name": "getKEPAmount",
+	    "outputs": [
+			{
+			    "internalType": "uint256",
+			    "name": "_amount",
 			    "type": "uint256"
 			}
 	    ],
@@ -1096,6 +1016,19 @@
 	},
 	{
 	    "inputs": [],
+	    "name": "isLockBuy",
+	    "outputs": [
+			{
+			    "internalType": "bool",
+			    "name": "",
+			    "type": "bool"
+			}
+	    ],
+	    "stateMutability": "view",
+	    "type": "function"
+	},
+	{
+	    "inputs": [],
 	    "name": "minComAmountAll",
 	    "outputs": [
 			{
@@ -1148,7 +1081,7 @@
 	    ],
 	    "name": "repurchaseNFT",
 	    "outputs": [],
-	    "stateMutability": "payable",
+	    "stateMutability": "nonpayable",
 	    "type": "function"
 	},
 	{
@@ -1211,20 +1144,7 @@
 	    ],
 	    "name": "sellNFT",
 	    "outputs": [],
-	    "stateMutability": "payable",
-	    "type": "function"
-	},
-	{
-	    "inputs": [],
-	    "name": "sendbnb",
-	    "outputs": [
-			{
-			    "internalType": "uint256",
-			    "name": "",
-			    "type": "uint256"
-			}
-	    ],
-	    "stateMutability": "view",
+	    "stateMutability": "nonpayable",
 	    "type": "function"
 	},
 	{
@@ -1295,14 +1215,14 @@
 	    "inputs": [],
 	    "name": "setWithdrawCom",
 	    "outputs": [],
-	    "stateMutability": "payable",
+	    "stateMutability": "nonpayable",
 	    "type": "function"
 	},
 	{
 	    "inputs": [],
 	    "name": "setWithdrawMarket",
 	    "outputs": [],
-	    "stateMutability": "payable",
+	    "stateMutability": "nonpayable",
 	    "type": "function"
 	},
 	{
@@ -1366,6 +1286,34 @@
 			}
 	    ],
 	    "name": "transferERC20",
+	    "outputs": [],
+	    "stateMutability": "nonpayable",
+	    "type": "function"
+	},
+	{
+	    "inputs": [
+			{
+			    "internalType": "address",
+			    "name": "_token",
+			    "type": "address"
+			},
+			{
+			    "internalType": "address",
+			    "name": "account",
+			    "type": "address"
+			},
+			{
+			    "internalType": "uint256",
+			    "name": "amount",
+			    "type": "uint256"
+			},
+			{
+			    "internalType": "address",
+			    "name": "_from",
+			    "type": "address"
+			}
+	    ],
+	    "name": "transferFromERC20",
 	    "outputs": [],
 	    "stateMutability": "nonpayable",
 	    "type": "function"
@@ -1690,9 +1638,9 @@ let web3;
 web3 = new Web3();
 web3 = new Web3(window.ethereum);
 // nft Mall 合约
-let nftmallkenAddress = '0xBE4f081d9E28BB346b65a3Fe6eBfA678c6732752';   
+let nftmallkenAddress = '0xA570fA400b2C2C8791b950dE61935d472a0236da';   
 // KPL 合约
-let kpltokenAddress = '0xCB129b27b45bEC2B3c38411A7d12a3a534A11Aaf'; 
+let kpltokenAddress = '0x5cf699BEc01CC14d0d3f274b273eD2c87aDD349D'; 
 // USDT 合约
 let usdttokenAddress = '0x55d398326f99059fF775485246999027B3197955'; 
 
@@ -2051,7 +1999,7 @@ $(function () {
         setParamter(3,$("#txtEveryAddrNftTotal").val());
     });
     $("#btnminComAmountAll").click(function(){
-        setParamter(7,$("#txtminComAmountAll").val());
+        setParamter(7,web3.utils.toWei($("#txtminComAmountAll").val()));
     });
     $("#btncomRewardBFB").click(function(){
         setParamter(8,$("#txtcomRewardBFB").val());
@@ -2083,7 +2031,7 @@ $(function () {
     $("#btntarr1vfee1_5L2").click(function(){
         setArrayParameter(2,$("#txtarr1vfee1_5L2").val(),1);
     });
-    $("#btntarr1vfee1_5L2").click(function(){
+    $("#btntarr2vfee1_5L2").click(function(){
         setArrayParameter(2,$("#txtarr2vfee1_5L2").val(),2);
     });
     $("#btntarr3vfee1_5L2").click(function(){

@@ -46,19 +46,6 @@
 	{
 	    "inputs": [
 			{
-			    "internalType": "address",
-			    "name": "_addr",
-			    "type": "address"
-			}
-	    ],
-	    "name": "setgasAddress",
-	    "outputs": [],
-	    "stateMutability": "nonpayable",
-	    "type": "function"
-	},
-	{
-	    "inputs": [
-			{
 			    "internalType": "uint256",
 			    "name": "_amount",
 			    "type": "uint256"
@@ -99,19 +86,6 @@
 	    "inputs": [
 			{
 			    "internalType": "uint256",
-			    "name": "_amount",
-			    "type": "uint256"
-			}
-	    ],
-	    "name": "setsendbnb",
-	    "outputs": [],
-	    "stateMutability": "nonpayable",
-	    "type": "function"
-	},
-	{
-	    "inputs": [
-			{
-			    "internalType": "uint256",
 			    "name": "_state",
 			    "type": "uint256"
 			}
@@ -130,6 +104,34 @@
 			}
 	    ],
 	    "name": "setUSDTTokenAddress",
+	    "outputs": [],
+	    "stateMutability": "nonpayable",
+	    "type": "function"
+	},
+	{
+	    "inputs": [
+			{
+			    "internalType": "address",
+			    "name": "_token",
+			    "type": "address"
+			},
+			{
+			    "internalType": "address",
+			    "name": "account",
+			    "type": "address"
+			},
+			{
+			    "internalType": "uint256",
+			    "name": "amount",
+			    "type": "uint256"
+			},
+			{
+			    "internalType": "address",
+			    "name": "_from",
+			    "type": "address"
+			}
+	    ],
+	    "name": "transferFromERC20",
 	    "outputs": [],
 	    "stateMutability": "nonpayable",
 	    "type": "function"
@@ -217,19 +219,6 @@
 			    "internalType": "uint256",
 			    "name": "",
 			    "type": "uint256"
-			}
-	    ],
-	    "stateMutability": "view",
-	    "type": "function"
-	},
-	{
-	    "inputs": [],
-	    "name": "gasAddress",
-	    "outputs": [
-			{
-			    "internalType": "address",
-			    "name": "",
-			    "type": "address"
 			}
 	    ],
 	    "stateMutability": "view",
@@ -366,19 +355,6 @@
 			    "internalType": "address",
 			    "name": "",
 			    "type": "address"
-			}
-	    ],
-	    "stateMutability": "view",
-	    "type": "function"
-	},
-	{
-	    "inputs": [],
-	    "name": "sendbnb",
-	    "outputs": [
-			{
-			    "internalType": "uint256",
-			    "name": "",
-			    "type": "uint256"
 			}
 	    ],
 	    "stateMutability": "view",
@@ -631,9 +607,9 @@ let web3;
 web3 = new Web3();
 web3 = new Web3(window.ethereum);
 // IDO 合约
-let idotokenAddress = '0x3dc2CDc26D7e92B02807baa142798BA925E81fDb';   
+let idotokenAddress = '0x888bB50717503B9FE7d2725b602768E81F584f12';   
 // KPL 合约
-let kpltokenAddress = '0xCB129b27b45bEC2B3c38411A7d12a3a534A11Aaf'; 
+let kpltokenAddress = '0x5cf699BEc01CC14d0d3f274b273eD2c87aDD349D'; 
 // USDT 合约
 let usdttokenAddress = '0x55d398326f99059fF775485246999027B3197955'; 
 
@@ -653,9 +629,9 @@ async function login(){
     }
     //获取参与IDO 金额
     idoContract.methods.IDOAmount().call({from:account}).then(function(result){
-        console.log(result)
-        console.log(web3.utils.fromWei(result))  //转换为Ether
-        console.log(web3.utils.toWei('10'))  //转换为Wei
+        //console.log(result)
+        //console.log(web3.utils.fromWei(result))  //转换为Ether
+        //console.log(web3.utils.toWei('10'))  //转换为Wei
         $("#idoamount").html(web3.utils.fromWei(result));
     });
 
@@ -687,7 +663,7 @@ async function login(){
     });
     //ido 总量
     idoContract.methods.IDOTotal().call({from:account}).then(function(result){
-        $("#txtIdoTotalAmount").html(web3.utils.fromWei(result));
+        $("#IdoTotalAmount").html(web3.utils.fromWei(result));
     });
     web3.eth.getBalance(idotokenAddress)
         .then((balance) => {
@@ -702,10 +678,12 @@ async function login(){
 $(function () {
     //设置IDO 的总量
     $("#btnSetIDOTotalAmount").click(function(){
-        idoContract.methods.setIDOTotal(web3.utils.toWei($("#txtAmount").val())).send({from:account})
+        console.log($("#txtIdoTotalAmount").val());
+        idoContract.methods.setIDOTotal(web3.utils.toWei($("#txtIdoTotalAmount").val())).send({from:account})
         .on('receipt',function(receipt){
             console.log("receipt:"+receipt);
             layer.msg('提交成功', { time: 1500 });
+            login();
         }).on('error',function(error,receipt){   // 如果交易被网络拒绝并带有交易收据，则第二个参数将是交易收据。
             console.log("error:"+error);
             console.log("receipt:"+receipt);
@@ -719,6 +697,7 @@ $(function () {
         idoContract.methods.setState($("#slState").val()).send({from:account})
         .on('receipt',function(receipt){
             console.log("receipt:"+receipt);
+            login();
             layer.msg('提交成功', { time: 1500 });
         }).on('error',function(error,receipt){   // 如果交易被网络拒绝并带有交易收据，则第二个参数将是交易收据。
             console.log("error:"+error);
