@@ -1884,7 +1884,7 @@ $(function () {
                     vhtml +="<label class=\"control-label later\">增值</label>";
                 }else if(result[i].state==2){
                     vhtml +="<label class=\"control-label later\">出售</label>";
-                }else if(result[i].state==2){
+                }else if(result[i].state==3){
                     vhtml +="<label class=\"control-label later\">闲置</label>";
                 }
                 vhtml +="<label class=\"control-label\">买入价格:</label>";
